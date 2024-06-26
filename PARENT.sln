@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csproj", "{4D261117-4383-4900-AF16-CAE8FE3D60B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server-Deprecated", "Server-Deprecated\Server-Deprecated.csproj", "{4D261117-4383-4900-AF16-CAE8FE3D60B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{B919E67A-07F1-45ED-B5E3-B17330ED1519}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6740B92C-133B-496F-9B49-9E5EFE4C3142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{33A6F573-BFE8-4E45-BA67-166A1CB36C02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{33A6F573-BFE8-4E45-BA67-166A1CB36C02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{62B0CA27-E108-423D-B2E7-2C56507D13C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{33A6F573-BFE8-4E45-BA67-166A1CB36C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A6F573-BFE8-4E45-BA67-166A1CB36C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A6F573-BFE8-4E45-BA67-166A1CB36C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62B0CA27-E108-423D-B2E7-2C56507D13C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B0CA27-E108-423D-B2E7-2C56507D13C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B0CA27-E108-423D-B2E7-2C56507D13C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B0CA27-E108-423D-B2E7-2C56507D13C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

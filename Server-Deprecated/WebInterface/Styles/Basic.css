@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial:700|Questrial:400');
 
+/* Palette: https://www.realtimecolors.com/?colors=e5ecfa-040a15-82aee8-861936-dd7a40&fonts=Questrial-Questrial */
+
 :root[data-theme="light"] {
     --text: #050c1a;
     --background: #eaf0fb;

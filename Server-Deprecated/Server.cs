@@ -61,6 +61,8 @@ namespace PARENT.Server
 
     public class Server
     {
+        const string WebInterfaceRootPath = "./WebInterface";
+
         public readonly Common.Logger logger;
 
         public ServerConfiguration Config => cfg;
@@ -82,10 +84,8 @@ namespace PARENT.Server
             logger = new(cfg.LogPath);
             logger.Info("PARENT Server initialized, welcome!");
 
-            Directory.CreateDirectory(cfg.WebDocumentRoot);
-
             engine = new RazorLightEngineBuilder()
-                .UseFileSystemProject(Path.GetFullPath(cfg.WebDocumentRoot))
+                .UseFileSystemProject(Path.GetFullPath(WebInterfaceRootPath))
                 .UseMemoryCachingProvider()
                 .Build();
 
@@ -93,7 +93,10 @@ namespace PARENT.Server
             webserver.AddWebSocketService<Handler>("/ws", a => a.Init(this));
 
             webserver.OnGet += OnWebServerGet;
-            
+
+            webserver.Start();
+            Console.ReadKey(true);
+            webserver.Stop();
 
             cfg.Save<ServerConfiguration>();
         }
@@ -104,7 +107,27 @@ namespace PARENT.Server
             var res = e.Response;
             var path = req.RawUrl;
 
-            
+            if (path.EndsWith('/')) path += "index.cshtml";
+            if (!Path.HasExtension(path)) path += ".cshtml";
+            path = path.Trim('/', '\\');
+
+            logger.Info($"Web.GET: {req.RawUrl} ({path}) [{Path.Combine(WebInterfaceRootPath, path)}]");
+
+            if (!File.Exists(Path.Combine(WebInterfaceRootPath, path)))
+            {
+                path = "404errorpage.cshtml";
+                res.StatusCode = 404;
+            }
+
+            object model = new { };
+
+            string html = engine.CompileRenderAsync(path, model).Result;
+
+            byte[] content = Encoding.UTF8.GetBytes(html);
+            res.ContentType = MimeMapping.MimeUtility.GetMimeMapping(path);
+            res.ContentEncoding = Encoding.UTF8;
+            res.ContentLength64 = content.LongLength;
+            res.Close(content, true);
         }
     }
 }

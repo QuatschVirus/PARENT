@@ -14,6 +14,5 @@ namespace PARENT.Server
         public Dictionary<int, ProfileData> Profiles { get; set; } = [];
         public string LogPath { get; set; } = "./PARENT-Server.log";
         public string ServerUrl { get; set; } = "http://localhost";
-        public string WebDocumentRoot { get; set; } = "./WebInterface";
     }
 }
